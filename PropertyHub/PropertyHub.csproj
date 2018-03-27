@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -24,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.7</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,7 +68,22 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".angular-cli.json" />
+    <Content Include=".editorconfig" />
+    <Content Include="e2e\tsconfig.e2e.json" />
+    <Content Include="package-lock.json" />
+    <Content Include="package.json" />
     <None Include="packages.config" />
+    <Content Include="README.md" />
+    <Content Include="src\assets\.gitkeep" />
+    <Content Include="src\tsconfig.app.json" />
+    <Content Include="src\tsconfig.spec.json" />
+    <Content Include="tsconfig.json" />
+    <Content Include="tslint.json" />
+    <Content Include="src\fonts\fontawesome-webfont.eot" />
+    <Content Include="src\fonts\fontawesome-webfont.ttf" />
+    <Content Include="src\fonts\fontawesome-webfont.woff" />
+    <Content Include="src\fonts\FontAwesome.otf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -75,16 +92,220 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="karma.conf.js" />
+    <Content Include="protractor.conf.js" />
+    <Content Include="src\app\app.component.css" />
+    <Content Include="src\app\app.component.html" />
+    <Content Include="src\app\shared\components\home-tab\home-tab.component.css" />
+    <Content Include="src\app\shared\components\home-tab\home-tab.component.html" />
+    <Content Include="src\assets\images\1x1.png" />
+    <Content Include="src\assets\images\ajax-loader.gif" />
+    <Content Include="src\assets\images\ajax-loader_01.gif" />
+    <Content Include="src\assets\images\arrow.png" />
+    <Content Include="src\assets\images\Black-Transparent-calendar.png" />
+    <Content Include="src\assets\images\ButtonsField\ClearButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\DeleteButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\EditButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\MaintainButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\NewButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\SaveButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\SearchButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\SelectButton.gif" />
+    <Content Include="src\assets\images\ButtonsField\SubmitButton.gif" />
+    <Content Include="src\assets\images\ButtonsIcon\ArrowIcon.gif" />
+    <Content Include="src\assets\images\ButtonsIcon\collapse.jpg" />
+    <Content Include="src\assets\images\ButtonsIcon\expand.jpg" />
+    <Content Include="src\assets\images\ButtonsIcon\NoIcon.gif" />
+    <Content Include="src\assets\images\ButtonsIcon\PrintIcon.gif" />
+    <Content Include="src\assets\images\ButtonsIcon\toggle_closed.png" />
+    <Content Include="src\assets\images\ButtonsIcon\toggle_down.png" />
+    <Content Include="src\assets\images\ButtonsIcon\toggle_open.png" />
+    <Content Include="src\assets\images\ButtonsIcon\toggle_up.png" />
+    <Content Include="src\assets\images\ButtonsIcon\TreePlusIcon.gif" />
+    <Content Include="src\assets\images\ButtonsIcon\UpdateIcon.gif" />
+    <Content Include="src\assets\images\ButtonsIcon\YesIcon.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\BackButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\BackButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\CancelButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\CancelButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\CloseButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\CloseButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\CreateButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\CreateButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\DeleteButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\DeleteButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\NextButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\NextButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\ResetButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\ResetButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\ReviewButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\ReviewButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\SaveButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\SaveButton_Disable.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\SubmitButton.gif" />
+    <Content Include="src\assets\images\ButtonsWFW\SubmitButton_Disable.gif" />
+    <Content Include="src\assets\images\Calendar_scheduleHS.png" />
+    <Content Include="src\assets\images\CancelButton.gif" />
+    <Content Include="src\assets\images\Date\calendar.jpg" />
+    <Content Include="src\assets\images\Date\LeftArrow.gif" />
+    <Content Include="src\assets\images\Date\RightArrow.gif" />
+    <Content Include="src\assets\images\CBRE_Header_Arrows.gif" />
+    <Content Include="src\assets\images\CloseButton.gif" />
+    <Content Include="src\assets\images\Doc.jpg" />
+    <Content Include="src\assets\images\Dot.gif" />
+    <Content Include="src\assets\images\enquiry.png" />
+    <Content Include="src\assets\images\Excel.jpg" />
+    <Content Include="src\assets\images\glyphicons-halflings-white.png" />
+    <Content Include="src\assets\images\GMap.png" />
+    <Content Include="src\assets\images\gradback.png" />
+    <Content Include="src\assets\images\gradhead.png" />
+    <Content Include="src\assets\images\gradhover.png" />
+    <Content Include="src\assets\images\green-info-icon.png" />
+    <Content Include="src\assets\images\green-spinner.gif" />
+    <Content Include="src\assets\images\grid icons.png" />
+    <Content Include="src\assets\images\grid_sprite.png" />
+    <Content Include="src\assets\images\Home_bg.jpg" />
+    <Content Include="src\assets\images\icon_small_tick.gif" />
+    <Content Include="src\assets\images\info_icon.png" />
+    <Content Include="src\assets\images\li.png" />
+    <Content Include="src\assets\images\li_collapsed.png" />
+    <Content Include="src\assets\images\li_expanded.png" />
+    <Content Include="src\assets\images\loading_circle.gif" />
+    <Content Include="src\assets\images\Logo.png" />
+    <Content Include="src\assets\images\Map\blue-dot.png" />
+    <Content Include="src\assets\images\Map\blue-pushpin.png" />
+    <Content Include="src\assets\images\Map\blue.png" />
+    <Content Include="src\assets\images\Map\green-dot.png" />
+    <Content Include="src\assets\images\Map\green-pushpin.png" />
+    <Content Include="src\assets\images\Map\green.png" />
+    <Content Include="src\assets\images\Map\green_pin.png" />
+    <Content Include="src\assets\images\Map\lightblue-dot.png" />
+    <Content Include="src\assets\images\Map\lightblue-pushpin.png" />
+    <Content Include="src\assets\images\Map\lightblue.png" />
+    <Content Include="src\assets\images\Map\map_icon.png" />
+    <Content Include="src\assets\images\Map\markerA.png" />
+    <Content Include="src\assets\images\Map\markerB.png" />
+    <Content Include="src\assets\images\Map\markerC.png" />
+    <Content Include="src\assets\images\Map\markerD.png" />
+    <Content Include="src\assets\images\Map\markerE.png" />
+    <Content Include="src\assets\images\Map\markerF.png" />
+    <Content Include="src\assets\images\Map\markerG.png" />
+    <Content Include="src\assets\images\Map\markerH.png" />
+    <Content Include="src\assets\images\Map\markerI.png" />
+    <Content Include="src\assets\images\Map\markerJ.png" />
+    <Content Include="src\assets\images\Map\markerK.png" />
+    <Content Include="src\assets\images\Map\markerL.png" />
+    <Content Include="src\assets\images\Map\markerM.png" />
+    <Content Include="src\assets\images\Map\markerN.png" />
+    <Content Include="src\assets\images\Map\markerO.png" />
+    <Content Include="src\assets\images\Map\markerP.png" />
+    <Content Include="src\assets\images\Map\markerQ.png" />
+    <Content Include="src\assets\images\Map\markerR.png" />
+    <Content Include="src\assets\images\Map\markerS.png" />
+    <Content Include="src\assets\images\Map\markerSmall80.png" />
+    <Content Include="src\assets\images\Map\markerT.png" />
+    <Content Include="src\assets\images\Map\markerU.png" />
+    <Content Include="src\assets\images\Map\markerV.png" />
+    <Content Include="src\assets\images\Map\markerW.png" />
+    <Content Include="src\assets\images\Map\markerX.png" />
+    <Content Include="src\assets\images\Map\markerY.png" />
+    <Content Include="src\assets\images\Map\markerZ.png" />
+    <Content Include="src\assets\images\Map\marker_shadow.png" />
+    <Content Include="src\assets\images\Map\mm_20_black.png" />
+    <Content Include="src\assets\images\Map\mm_20_blue-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_blue.png" />
+    <Content Include="src\assets\images\Map\mm_20_gray.png" />
+    <Content Include="src\assets\images\Map\mm_20_green-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_green.png" />
+    <Content Include="src\assets\images\Map\mm_20_lightblue-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_orange.png" />
+    <Content Include="src\assets\images\Map\mm_20_pink-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_purple-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_purple.png" />
+    <Content Include="src\assets\images\Map\mm_20_pushpin_shadow.png" />
+    <Content Include="src\assets\images\Map\mm_20_red-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_red.png" />
+    <Content Include="src\assets\images\Map\mm_20_shadow.png" />
+    <Content Include="src\assets\images\Map\mm_20_white.png" />
+    <Content Include="src\assets\images\Map\mm_20_yellow-pushpin.png" />
+    <Content Include="src\assets\images\Map\mm_20_yellow.png" />
+    <Content Include="src\assets\images\Map\mp4_pink_big.png" />
+    <Content Include="src\assets\images\Map\orange-dot.png" />
+    <Content Include="src\assets\images\Map\orange.png" />
+    <Content Include="src\assets\images\Map\pink-dot.png" />
+    <Content Include="src\assets\images\Map\pink-pushpin.png" />
+    <Content Include="src\assets\images\Map\pink.png" />
+    <Content Include="src\assets\images\Map\purple-dot.png" />
+    <Content Include="src\assets\images\Map\purple-pushpin.png" />
+    <Content Include="src\assets\images\Map\purple.png" />
+    <Content Include="src\assets\images\Map\pushpin_shadow.png" />
+    <Content Include="src\assets\images\Map\red-dot.png" />
+    <Content Include="src\assets\images\Map\red-pushpin.png" />
+    <Content Include="src\assets\images\Map\red.png" />
+    <Content Include="src\assets\images\Map\shadow50Small80.png" />
+    <Content Include="src\assets\images\Map\yellow-dot.png" />
+    <Content Include="src\assets\images\Map\yellow-pushpin.png" />
+    <Content Include="src\assets\images\Map\yellow.png" />
+    <Content Include="src\assets\images\minus.png" />
+    <Content Include="src\assets\images\movie.png" />
+    <Content Include="src\assets\images\No Image_Original.jpg" />
+    <Content Include="src\assets\images\NoImage.jpg" />
+    <Content Include="src\assets\images\not_authorized.png" />
+    <Content Include="src\assets\images\No_Image_Grey.jpg" />
+    <Content Include="src\assets\images\owner_occupier.png" />
+    <Content Include="src\assets\images\Pdf.jpg" />
+    <Content Include="src\assets\images\plus.png" />
+    <Content Include="src\assets\images\Ppt.jpg" />
+    <Content Include="src\assets\images\Refresh.png" />
+    <Content Include="src\assets\images\right_border.gif" />
+    <Content Include="src\assets\images\sorting_arrow.png" />
+    <Content Include="src\assets\images\sub-li.png" />
+    <Content Include="src\assets\images\SubmitButton.gif" />
+    <Content Include="src\assets\images\ui-bg_highlight-active.png" />
+    <Content Include="src\assets\images\ui-bg_highlight.png" />
+    <Content Include="src\assets\images\ui-icons_8DC262_256x240.png" />
+    <Content Include="src\assets\images\ui-icons_eeeeee_256x240.png" />
+    <Content Include="src\assets\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="src\assets\images\uploader-cancel.png" />
+    <Content Include="src\assets\images\White-Transparent-Upload-Icon.png" />
+    <Content Include="src\favicon.ico" />
+    <Content Include="src\fonts\font-awesome.min.css" />
+    <Content Include="src\fonts\fontawesome-webfont.svg" />
+    <Content Include="src\index.html" />
+    <Content Include="src\styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="e2e\app.e2e-spec.ts" />
+    <TypeScriptCompile Include="e2e\app.po.ts" />
+    <TypeScriptCompile Include="src\app\app.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\app.component.ts" />
+    <TypeScriptCompile Include="src\app\app.module.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\home-tab\home-tab.component.spec.ts" />
+    <TypeScriptCompile Include="src\app\shared\components\home-tab\home-tab.component.ts" />
+    <TypeScriptCompile Include="src\environments\environment.prod.ts" />
+    <TypeScriptCompile Include="src\environments\environment.ts" />
+    <TypeScriptCompile Include="src\main.ts" />
+    <TypeScriptCompile Include="src\polyfills.ts" />
+    <TypeScriptCompile Include="src\test.ts" />
+    <TypeScriptCompile Include="src\typings.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="src\assets\images\NewUpload\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

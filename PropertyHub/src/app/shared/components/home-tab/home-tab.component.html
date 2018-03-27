@@ -1,0 +1,19 @@
+<div class="flex_main">
+  <div id="{{tab.name}}" class="box_menu" (mouseover)="mouseOverActive(tab.name)"
+       (mouseout)="mouseOutActive()" *ngFor="let tab of tablist">
+    <a class="icon_property">
+      <span>
+        <label id="Literal2">
+          {{tab.title}}
+        </label>
+      </span>
+    </a>
+    <ul [ngClass]="{'anim':currentActiveTab==tab.name}">
+      <li *ngFor="let subMenu of tab.subMenuList">
+        <a id="{{subMenu.name}}" href="{{subMenu.url}}">
+          <label id="Literal2">{{subMenu.title}}</label>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
